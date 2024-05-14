@@ -1,2 +1,6 @@
 # fastify-vitest-example
-fastify web framework example 
+
+使用vitest对fastify编写的接口进行测试
+
+## todo
+- 迁移到github action测试

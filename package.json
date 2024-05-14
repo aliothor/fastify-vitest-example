@@ -1,0 +1,29 @@
+{
+  "name": "fastify-demo",
+  "version": "0.0.0",
+  "description": "",
+  "type": "module",
+  "scripts": {
+    "dev": "tsx --watch ./src/index.ts",
+    "esbuild": "esbuild ./scripts/index2.ts --target=es2022 --format=esm --outfile=./dist/index.js",
+    "swcbuild": "swc ./scripts/index2.ts --config-file .swcrc -o ./dist/index2.js",
+    "test:esbuild": "pnpm run esbuild && node ./dist/index.js",
+    "test:swc": "pnpm run swcbuild && node ./dist/index2.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "emittery": "^1.0.3",
+    "fastify": "^4.27.0"
+  },
+  "devDependencies": {
+    "@swc/cli": "^0.3.12",
+    "@swc/core": "^1.5.5",
+    "@swc/helpers": "^0.5.11",
+    "@types/node": "^20.12.11",
+    "esbuild": "^0.21.1",
+    "tsx": "^4.9.4",
+    "vitest": "^1.6.0"
+  }
+}
