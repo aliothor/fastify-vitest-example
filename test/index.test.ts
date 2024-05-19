@@ -1,16 +1,20 @@
 import { describe, it, beforeAll, expect } from 'vitest'
-import { buildFastify } from '../src/index'
+import { fastify } from './server'
 import type { FastifyInstance } from 'fastify'
 
-describe('接口测试', () => {
-  let fastify: FastifyInstance
-  beforeAll(() => {
-    fastify = buildFastify()
-    return () => {
-      fastify.close()
-    }
-  })
 
+describe('接口测试', () => {
+
+  // let fastify: FastifyInstance
+
+  // beforeAll(() => {
+  //   fastify = buildFastify()
+  //   return () => {
+  //     fastify.close()
+  //   }
+  // })
+
+ 
   it('index', async () => {
     const res = await fastify.inject({
       method: 'GET',
@@ -26,10 +30,13 @@ describe('接口测试', () => {
     const res = await fastify.inject({
       method: 'GET',
       url: '/hello',
-      query: { a: 'b' },
+      query: { name: 'abc' },
     })
 
-    expect(res.json().hello).toBe('b')
+
+    console.log(res.json())
+
+    expect(res.json().hello).toBe('abc')
   })
 
   it('post/hello', async () => {
@@ -37,10 +44,12 @@ describe('接口测试', () => {
       method: 'POST',
       url: '/hello',
       body: {
-        a: 'foo',
+        name: 'foo',
       },
     })
 
-    expect(res.json().a).toBe('foo')
+    console.log(res.json())
+
+    expect(res.json().data).toBe('hello foo')
   })
 })

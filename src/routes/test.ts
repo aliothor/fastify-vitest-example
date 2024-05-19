@@ -1,7 +1,7 @@
 import type { FastifyInstance } from 'fastify'
 
 interface IHelloQuerystring {
-  a: string
+  name: string
 }
 
 async function routes(fastify: FastifyInstance) {
@@ -13,7 +13,7 @@ async function routes(fastify: FastifyInstance) {
     Querystring: IHelloQuerystring
   }>('/hello', async (request, reply) => {
     const query = request.query
-    reply.send({ hello: `${query.a}` })
+    reply.send({ hello: `${query.name}` })
   })
 
   fastify.post<{
@@ -21,7 +21,7 @@ async function routes(fastify: FastifyInstance) {
   }>('/hello', async (request, reply) => {
     const body = request.body
     reply.send({
-      b: `msg ${body.a}`,
+      data: `hello ${body.name}`,
     })
   })
 }
